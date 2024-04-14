@@ -2,7 +2,7 @@
     A Class that contains all the functionality and tracking necessary to train and debug Deep Neural Networks.
 '''
 from timeScaleNetwork import timescaleF as tsf
-from timeScaleNetwork import tnoise
+from timeScaleNetwork import noise
 import torch.nn as nn
 import torch
 import math
@@ -79,9 +79,9 @@ class TSC_input(nn.Module):
         else:
             with torch.no_grad():
                 if isinstance( self.param_initialization, int) or isinstance( self.param_initialization, float):
-                    self.weights.data = torch.Tensor( stdev * tnoise.get_noise( self.weights.shape, beta=self.param_initialization))
+                    self.weights.data = torch.Tensor( stdev * noise.get_noise( self.weights.shape, beta=self.param_initialization))
                 elif isinstance( self.param_initialization, str):
-                    self.weights.data = torch.Tensor( stdev * tnoise.get_color( self.weights.shape, self.param_initialization))
+                    self.weights.data = torch.Tensor( stdev * noise.get_color( self.weights.shape, self.param_initialization))
                 else:
                     print('WARNGING: Invalid initialization argument. Initializing to uniform distribution.')
                     nn.init.uniform_(self.weights, -stdev,stdev)
@@ -321,9 +321,9 @@ class TSCTranspose_input(nn.Module):
         else:
             with torch.no_grad():
                 if isinstance( self.param_initialization, int) or isinstance( self.param_initialization, float):
-                    self.weights.data = torch.Tensor( stdev * tnoise.get_noise( self.weights.shape, beta=self.param_initialization))
+                    self.weights.data = torch.Tensor( stdev * noise.get_noise( self.weights.shape, beta=self.param_initialization))
                 elif isinstance( self.param_initialization, str):
-                    self.weights.data = torch.Tensor( stdev * tnoise.get_color( self.weights.shape, self.param_initialization))
+                    self.weights.data = torch.Tensor( stdev * noise.get_color( self.weights.shape, self.param_initialization))
                 else:
                     print('WARNGING: Invalid initialization argument. Initializing to uniform distribution.')
                     nn.init.uniform_(self.weights, -stdev,stdev)
@@ -454,9 +454,9 @@ class TSC_hidden(nn.Module):
         else:
             with torch.no_grad():
                 if isinstance( self.param_initialization, int) or isinstance( self.param_initialization, float):
-                    self.weight.data = torch.Tensor( stdev * tnoise.get_noise( self.weight.shape, beta=self.param_initialization))
+                    self.weight.data = torch.Tensor( stdev * noise.get_noise( self.weight.shape, beta=self.param_initialization))
                 elif isinstance( self.param_initialization, str):
-                    self.weight.data = torch.Tensor( stdev * tnoise.get_color( self.weight.shape, self.param_initialization))
+                    self.weight.data = torch.Tensor( stdev * noise.get_color( self.weight.shape, self.param_initialization))
                 else:
                     print('WARNGING: Invalid initialization argument. Initializing to uniform distribution.')
                     nn.init.uniform_(self.weight, -stdev,stdev)
