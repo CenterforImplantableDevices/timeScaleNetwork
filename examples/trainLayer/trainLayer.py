@@ -1,4 +1,4 @@
-from examples.trainLayer.fcn_plotEmbedding import make_square, make_exponential_list
+from fcn_plotEmbedding import make_square, make_exponential_list
 from timeScaleNetwork import timescaleL
 import matplotlib.pyplot as plt
 import numpy as np
@@ -18,11 +18,11 @@ weight_decay  = 1
 momentum      = 0
 
 # Define Outputs
-save_output   = False
-save_weights  = False
+save_output   = True
+save_weights  = True
 save_gradient = False
 path_data     = './synthetic_output/combo_12_7-10-8-9'
-path_save     = './synthetic_output/training_output'
+path_save     = './training_output'
 if not( os.path.exists(path_save)) and not( os.path.isdir(path_save)):
     os.mkdir(path_save)
 

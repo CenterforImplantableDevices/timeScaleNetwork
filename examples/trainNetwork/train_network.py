@@ -19,7 +19,7 @@ weight_decay  = 1
 momentum      = 0
 
 # Define Outputs
-save_weights  = False
+save_weights  = True
 path_data     = './synthetic_output'
 path_save     = './training_output'
 if not( os.path.exists(path_save)) and not( os.path.isdir(path_save)):
@@ -51,6 +51,35 @@ elif optimizer.lower() == 'adamax':
     optimizer_fn = torch.optim.Adamax(   filter(lambda p: p.requires_grad, TiScNetwork.parameters()), lr=learning_rate, weight_decay=weight_decay)
 TiScNetwork.train()
 # Setup Data
+class dset(torch.utils.data.Dataset):
+    '''Class to define dataset that will be iterated over during training.
+    '''
+    def __init__(self, path_data):
+        samples = []
+        self.data = []
+        for file in os.listdir(path_data):
+            if not file.endswith('.wav'):
+                continue
+            # Strip the last descriptor off (will be either data or label)
+            sample_desc = '_'.join(file.split('_')[:-1])
+
+            # If the sample is new, add it to self.data
+            if sample_desc not in samples:
+                samples.append(sample_desc)
+                with wave.open( os.path.join( path_data, sample_desc+'_data.wav'), 'rb') as f:
+                    sample  = np.frombuffer( f.readframes( f.getnframes()), dtype=np.float32)
+                    sample = torch.Tensor(sample.copy())
+                with wave.open( os.path.join( path_data, sample_desc+'_label.wav'), 'rb') as f:
+                    label = np.frombuffer( f.readframes( f.getnframes()), dtype=np.float32)
+                    label = torch.Tensor(label.copy())
+                self.data.append([sample,label])
+    
+    def __len__(self):
+        return len(self.data)
+    
+    def __getitem__(self,idx):
+        d = self.data[idx]
+        return d[0], d[1]
 
 synthetic_dset = dset(path_data)
 dataloader = torch.utils.data.DataLoader( synthetic_dset, batch_size=1, shuffle=True, num_workers=0)
