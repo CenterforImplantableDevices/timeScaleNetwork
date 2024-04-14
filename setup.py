@@ -11,7 +11,7 @@ setuptools.setup(
     description="Time Scale Network Pytorch Functions",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://www.github.com/centerforimplantabledevices/TimeScaleNetwork.git",
+    url="https://github.com/CenterforImplantableDevices/TimeScaleNetwork",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

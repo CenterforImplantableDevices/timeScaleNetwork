@@ -1,5 +1,12 @@
 README.md
 setup.py
+timeScaleNetwork/__init__.py
+timeScaleNetwork/network.py
+timeScaleNetwork/perceptronN.py
+timeScaleNetwork/timescaleF.py
+timeScaleNetwork/timescaleL.py
+timeScaleNetwork/timescaleN.py
+timeScaleNetwork/tnoise.py
 timeScaleNetwork.egg-info/PKG-INFO
 timeScaleNetwork.egg-info/SOURCES.txt
 timeScaleNetwork.egg-info/dependency_links.txt

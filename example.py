@@ -37,14 +37,14 @@ print(output)
 # Create a 2-layer TiSc Network
 #   (input)  minimum window = length 2
 #   (input)  maximum window = lenght 16384
-#   (hidden) minimum window = length
-#   (hidden) maximum window = length
+#   (hidden) minimum window = length 2
+#   (hidden) maximum window = length 16384
 #   Dense Network classifier with hidden layers size 300, 100, 2 (one-hot output)
 # Create a 2-layer TiSc Network
 testNet_2layer = tiscNetwork.TiscMlpN( [[2, 16384], [2, 16384, False], 300, 100, 2], num_tisc_channels=2, length_input=data_flattened.shape[0], dropout=[True, True, False])
 print('\n---\n\nTiSc Input Layer and TiSc Hidden Layer (2 Independent Channels)')
-print(testNet_1layer)
-output = testNet_1layer( tensor_flattened)
+print(testNet_2layer)
+output = testNet_2layer( tensor_flattened)
 print('Output')
 print(output)
 
