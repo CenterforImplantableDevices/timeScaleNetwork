@@ -21,8 +21,12 @@ momentum      = 0
 save_output   = True
 save_weights  = True
 save_gradient = False
-path_data     = './synthetic_output/combo_12_7-10-8-9'
-path_save     = './training_output'
+path_data     = './data_synthetic/combo_12_7-10-8-9'
+path_save     = './output_training'
+if not( os.path.exists(path_data+'_data.wav')) and not( os.path.isfile(path_data+'_data.wav')):
+    print('No Data Found. You may need to run generateData.py first.')
+    import sys
+    sys.exit()
 if not( os.path.exists(path_save)) and not( os.path.isdir(path_save)):
     os.mkdir(path_save)
 

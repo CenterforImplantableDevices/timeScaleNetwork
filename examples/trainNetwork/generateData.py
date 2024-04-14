@@ -21,7 +21,7 @@ scale_multiplier  = 2
 
 # Define Outputs
 show_plot = False
-path_save = './synthetic_output'
+path_save = './data_synthetic'
 print(os.getcwd())
 if not( os.path.exists(path_save)) and not( os.path.isdir(path_save)):
     os.mkdir(path_save)
@@ -98,46 +98,3 @@ label_save = torch.zeros(len(templates)).numpy()
 with wave.open( os.path.join( path_save, 'segments_None_label.wav'), 'w') as f:
     f.setparams((1, label_save.itemsize, 1, 0, 'NONE','not compressed'))
     f.writeframes( label_save.tobytes())
-
-
-
-class dset(torch.utils.data.Dataset):
-    '''Class to define dataset that will be iterated over during training.
-        Inherits torch.utils.data.Dataset class for optimized implementation
-    '''
-    def __init__(self, path_data):
-        '''Initialization function for an independent dataset that can be used for training or validation or testing.
-
-        Args:
-            path_data (str): Path to the folder containing raw data. This joined the 'filename' feild of a sample dict should identify the raw data file.
-
-        Returns:
-            An instance of Dataset_Bread object to be used as a data source.
-        '''
-        samples = []
-        self.data = []
-        for file in os.listdir(path_data):
-            if not file.endswith('.wav'):
-                continue
-            # Strip the last descriptor off (will be either data or label)
-            sample_desc = '_'.join(file.split('_')[:-1])
-
-            # If the sample is new, add it to self.data
-            if sample_desc not in samples:
-                print(sample_desc)
-                samples.append(sample_desc)
-
-                with wave.open( os.path.join( path_data, sample_desc+'_data.wav'), 'rb') as f:
-                    sample  = np.frombuffer( f.readframes( f.getnframes()), dtype=np.float32)
-                    sample = torch.Tensor(sample.copy())
-                with wave.open( os.path.join( path_data, sample_desc+'_label.wav'), 'rb') as f:
-                    label = np.frombuffer( f.readframes( f.getnframes()), dtype=np.float32)
-                    label = torch.Tensor(label.copy())
-                self.data.append([sample,label])
-    
-    def __len__(self):
-        return len(self.data)
-    
-    def __getitem__(self,idx):
-        d = self.data[idx]
-        return d[0], d[1]

@@ -20,8 +20,12 @@ momentum      = 0
 
 # Define Outputs
 save_weights  = True
-path_data     = './synthetic_output'
-path_save     = './training_output'
+path_data     = './data_synthetic'
+path_save     = './output_training'
+if not( os.path.exists(path_data)) and not( os.path.isdir(path_data)):
+    print('No Data Found. You may need to run generateData.py first.')
+    import sys
+    sys.exit()
 if not( os.path.exists(path_save)) and not( os.path.isdir(path_save)):
     os.mkdir(path_save)
 
@@ -105,7 +109,7 @@ for epoch in range( num_epochs):
         plt.imshow( data_to_plot, aspect='auto')
         plt.colorbar()
         plt.title('WEIGHTS BIAS')
-        plt.savefig( os.path.join(path_save, 'bias_'+str(epoch)+'.png'))
+        plt.savefig( os.path.join(path_save, 'bias_epoch-'+str(epoch)+'.png'))
         plt.clf()
         plt.close()
 
@@ -117,7 +121,7 @@ for epoch in range( num_epochs):
             plt.plot( wgt[0])
         plt.subplot(num_weights, 1, 1)
         plt.title('WEIGHTS')
-        plt.savefig( os.path.join(path_save, 'weights_'+str(epoch)+'.png'))
+        plt.savefig( os.path.join(path_save, 'weights_epoch-'+str(epoch)+'.png'))
         plt.clf()
         plt.close()
 
@@ -151,4 +155,5 @@ for i, wgt in enumerate( data_to_plot):
     plt.xticks([],[])
     plt.yticks([],[])
     plt.box(False)
+plt.suptitle('TRAINED WEIGHTS')
 plt.show()

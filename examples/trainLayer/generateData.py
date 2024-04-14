@@ -21,7 +21,7 @@ length_signal_exp = 16
 show_plot = True
 save_plot = True
 save_data = True
-path_save = './synthetic_output'
+path_save = './data_synthetic'
 if not( os.path.exists(path_save)) and not( os.path.isdir(path_save)):
     os.mkdir(path_save)
 
