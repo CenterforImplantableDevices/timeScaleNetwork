@@ -1,7 +1,6 @@
 from fcn_plotEmbedding import make_exponential_list
 from timeScaleNetwork import timescaleN
 import matplotlib.pyplot as plt
-from generateData import dset
 import numpy as np
 import torch
 import wave
