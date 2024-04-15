@@ -2,14 +2,18 @@ Metadata-Version: 2.1
 Name: timeScaleNetwork
 Version: 0.0.1
 Summary: Time Scale Network Pytorch Functions
-Home-page: https://github.com/CenterforImplantableDevices/TimeScaleNetwork
-Author: trevor
-Author-email: mail2trevorm@gmail.com
+Author-email: trevor d meyer <mail2trevorm@gmail.com>
+Project-URL: Homepage, https://example.com
+Project-URL: Documentation, https://readthedocs.org
+Project-URL: Repository, https://github.com/me/spam.git
+Project-URL: Issues, https://github.com/me/spam/issues
+Project-URL: Changelog, https://github.com/me/spam/blob/master/CHANGELOG.md
 Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.5
 Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: torch
 
 # TimeScaleNetwork
 

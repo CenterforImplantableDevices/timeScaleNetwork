@@ -1,5 +1,5 @@
 README.md
-setup.py
+pyproject.toml
 timeScaleNetwork/__init__.py
 timeScaleNetwork/network.py
 timeScaleNetwork/noise.py
@@ -10,4 +10,5 @@ timeScaleNetwork/timescaleN.py
 timeScaleNetwork.egg-info/PKG-INFO
 timeScaleNetwork.egg-info/SOURCES.txt
 timeScaleNetwork.egg-info/dependency_links.txt
+timeScaleNetwork.egg-info/requires.txt
 timeScaleNetwork.egg-info/top_level.txt
