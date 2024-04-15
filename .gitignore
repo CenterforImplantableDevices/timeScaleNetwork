@@ -1,0 +1,10 @@
+.DS_Store
+*__pycache__*
+*.vscode*
+build
+*.wav
+*.png
+*env
+env
+env/
+log.txt

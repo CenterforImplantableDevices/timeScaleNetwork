@@ -1,0 +1,29 @@
+[build-system]
+requires = ['setuptools>=61.0']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'timeScaleNetwork'
+version = '0.0.1'
+description = 'Time Scale Network Pytorch Functions'
+readme = 'README.md'
+license = {file = 'LICENSE'}
+requires-python = '>=3.5'
+dependencies = [
+  'numpy',
+  'torch',
+]
+classifiers = [
+    'Programming Language :: Python :: 3',
+    'Operating System :: OS Independent',
+]
+authors = [
+  { name='trevor d meyer', email='mail2trevorm@gmail.com' },
+]
+
+[project.urls]
+Homepage = 'https://example.com'
+Documentation = 'https://readthedocs.org'
+Repository = 'https://github.com/me/spam.git'
+Issues = 'https://github.com/me/spam/issues'
+Changelog = 'https://github.com/me/spam/blob/master/CHANGELOG.md'
