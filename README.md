@@ -3,7 +3,7 @@
 Install the timeScaleNetwork package using the pip command
 
 ```
-pip3 install git+https://github.com/centerforimplantabledevices/timescalenetwork.git
+python3 -m pip install git+https://github.com/centerforimplantabledevices/timescalenetwork.git
 ```
 
 Then you are ready to use the Time Scale Network! Keep in mind these best practices when using the Time Scale Network:
