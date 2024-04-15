@@ -1,6 +1,6 @@
-# TimeScaleNetwork
+# Time Scale Network
 
-Install the TimeScaleNetwork package using the pip command
+Install the timeScaleNetwork package using the pip command
 
 ```
 pip3 install git+https://github.com/centerforimplantabledevices/timescalenetwork.git
