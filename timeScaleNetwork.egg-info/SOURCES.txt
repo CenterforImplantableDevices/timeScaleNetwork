@@ -1,3 +1,4 @@
+LICENSE
 README.md
 pyproject.toml
 timeScaleNetwork/__init__.py

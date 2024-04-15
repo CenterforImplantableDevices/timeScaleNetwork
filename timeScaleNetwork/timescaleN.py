@@ -17,7 +17,8 @@ class TiscMlpN(toast_network.Network):
 
         Args:
             layer_size (1D iterable):           Sequential list of the size of each layer. 
-                                                The first index is a 2 element list representing [min_window, max_window]. The remaining elements are used to construct a mlp using the indicated layer sizes
+                                                The first index is a 2 element list representing [min_window, max_window] of a TiSc Input Layer.
+                                                The remaining elements are used to construct either more TiSc Layers (list) or mlp lyaers (ints) using the indicated layer sizes
             num_tisc_channels (int, optional):  How many repetitions or independent channels of Time Scale layers to apply to the data.
             length_input (int, optional):       Size of the data that will be input into the network. Necessary if the largest TiSc window size does not cover the entire data length, to aid in dimension calculation.
             dropout (1D iterable, optional):    Iterable of Boolean Values: Sequentially decide if the correlating layer in layer_size iterable should be followed by a dropout layer. Passed to MLP initialization only. If value(s) don't exist they will be set to False.
@@ -34,10 +35,10 @@ class TiscMlpN(toast_network.Network):
         Returns:
             An instance of the PerceptronNN class representing a deep neural network.
         '''
-        # nonlinearity = nn.Tanh
-
         self.decision_threshold  = 0.5
         self.one_hot_output = True if (layer_size[-1] > 1) else False
+        if len(dropout) < len(layer_size):
+            dropout += [False] * (len(layer_size) - len(dropout))
 
         # Define the expected layer types, used for organizing potential debugging output.
         layer_type_dict = {'TiScLayer':    [tsl.TSC_input],
@@ -58,8 +59,9 @@ class TiscMlpN(toast_network.Network):
             # Nonlinearity
             if nonlinearity_tisc is not None:
                 layers_temp.append(nonlinearity_tisc())
-            # Dropout Layers # TODO ADD IF STATEMENT
-            layers_temp.append(nn.Dropout(p=dropout_perc))
+            # Dropout Layers
+            if dropout[0]:
+                layers_temp.append(nn.Dropout(p=dropout_perc))
             # Finalize layers as sequential object
             tisc_channels.append( layers_temp)
         
@@ -72,13 +74,15 @@ class TiscMlpN(toast_network.Network):
         index_layer   = 1
         while isinstance( layer_size[index_layer], list):
             for num_channel in range(num_tisc_channels):
-                tisc_temp = tsl.TSC_hidden( layer_size[index_layer][0], layer_size[index_layer][1], tisc_outputLen_perCh, layer_size[index_layer][2], scale_multiplier=tisc_scale_multiplier, bias=True, initialization=tisc_initialization)
+                inclusive = layer_size[index_layer][2] if len(layer_size[index_layer]) > 2 else False
+                tisc_temp = tsl.TSC_hidden( layer_size[index_layer][0], layer_size[index_layer][1], tisc_outputLen_perCh, inclusive=inclusive, scale_multiplier=tisc_scale_multiplier, bias=True, initialization=tisc_initialization)
                 tisc_channels[num_channel].extend([tisc_temp])
                 # Nonlinearity
                 if nonlinearity_tiscHidden is not None:
                     tisc_channels[num_channel].extend([nonlinearity_tiscHidden()])
                 # Dropout Layers
-                tisc_channels[num_channel].extend([nn.Dropout(p=dropout_perc)])
+                if dropout[index_layer]:
+                    tisc_channels[num_channel].extend([nn.Dropout(p=dropout_perc)])
             tisc_outputLen_perCh = ((tisc_outputLen_perCh +1) // tisc_temp.min_window) -1
 
             index_layer += 1
