@@ -7,11 +7,11 @@ name = 'timeScaleNetwork'
 version = '0.0.1'
 description = 'Time Scale Network Pytorch Functions'
 readme = 'README.md'
-license = {file = "LICENSE"}
+license = {file = 'LICENSE'}
 requires-python = '>=3.5'
 dependencies = [
-  "numpy",
-  "torch",
+  'numpy',
+  'torch',
 ]
 classifiers = [
     'Programming Language :: Python :: 3',
@@ -22,8 +22,8 @@ authors = [
 ]
 
 [project.urls]
-Homepage = "https://example.com"
-Documentation = "https://readthedocs.org"
-Repository = "https://github.com/me/spam.git"
-Issues = "https://github.com/me/spam/issues"
-Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+Homepage = 'https://example.com'
+Documentation = 'https://readthedocs.org'
+Repository = 'https://github.com/me/spam.git'
+Issues = 'https://github.com/me/spam/issues'
+Changelog = 'https://github.com/me/spam/blob/master/CHANGELOG.md'
