@@ -8,3 +8,4 @@ build
 env
 env/
 log.txt
+!output_example.png
