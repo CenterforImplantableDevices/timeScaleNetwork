@@ -35,3 +35,6 @@ Expanded application of this network on EKG ([MIT-BIH Dataset](https://physionet
 * TiSc Net was designed for data containing either known features at multilpe time scales - such as EKG with fast QRS complexes, P-waves and T-waves, slower heart rate patterns, and even slower respiration artifacts - or unknown features at unknown time scales - such as such as EEG or ECoG data with information spread across many activaiton frequencies.
 * Time series signals with well understood features and structure, such as speech signals may benefit from more targeted architecture designs that directly capture know features.
 * A future update will release implementations for low-power edge device including microcontrollers in Tensorflow Lite. 
+
+
+For any questions, issues, or requests, contact mail2trevorm@gmail.com
