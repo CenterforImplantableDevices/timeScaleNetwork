@@ -375,7 +375,7 @@ class TSC_hidden(nn.Module):
         Typically these layers are stacked as hidden layers in a nerual network. It is designed to transform a 2D scaled output into another 2D scaled output.
     '''
 
-    def __init__(self, min_window, max_window, input_size, inclusive, scale_multiplier=2, bias=True, initialization=None):
+    def __init__(self, min_window, max_window, input_size, inclusive=False, scale_multiplier=2, bias=True, initialization=None):
         '''Initialization to create a Time Scale Convolutional Hidden Layer.
         Args:
             min_window (int):                   TODO Should this be the scale/exponential???? The minimum window size to consider. Value represents the min window size in number of samples.

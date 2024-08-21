@@ -11,8 +11,8 @@ import os
 # Define Training Parameters
 num_epochs  = 50
 TiScNetwork = timescaleN.TiscMlpN( [[2, 2**15], 5], length_input=32768, tisc_initialization='white')
-loss_fn     = torch.nn.MSELoss()
-optimizer     = 'sgd'
+loss_fn     = torch.nn.MSELoss() # For Classification, try CrossEntropy loss functions
+optimizer     = 'sgd'            # For Classificaiton, try RMSprop or ADAM optimizers
 learning_rate = 1e-2
 weight_decay  = 1
 momentum      = 0
